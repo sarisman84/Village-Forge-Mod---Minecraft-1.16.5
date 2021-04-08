@@ -1,13 +1,8 @@
-package com.example.examplemod.blocks;
+package com.spyro.spyrosvillagers.blocks;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.Item;
-
-import java.util.function.ToIntFunction;
 
 public class FirstBlock extends Block {
 

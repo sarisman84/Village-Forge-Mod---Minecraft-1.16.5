@@ -14,17 +14,20 @@ import java.util.function.Supplier;
 
 import static com.spyro.spyrosvillagers.VillagerMod.MOD_ID;
 
-public class Registrator {
+public class Registration {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
 
-    //Deffered Registration taken from eerussianguy on Github: https://github.com/eerussianguy/Rainbow-Oaks/blob/main/src/main/java/com/eerussianguy/rainbowoaks/RORegistry.java
-    public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> supplier, ItemGroup tab) {
+    //Deffered Registration taken from eerussianguy as well as altered based on SilentChaos512. errussiangu -> Github: https://github.com/eerussianguy/Rainbow-Oaks/blob/main/src/main/java/com/eerussianguy/rainbowoaks/RORegistry.java
+    public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> supplier, ItemGroup tab, boolean registerItem) {
         RegistryObject<T> block = BLOCKS.register(name, supplier);
+        if(registerItem)
         ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
         return block;
     }
+
+
 
     public static <T extends Item> RegistryObject<T> registerItem(String name, Item.Properties properties, ItemGroup tab){
         RegistryObject<T> item = (RegistryObject<T>) ITEMS.register(name, () -> new Item(properties.tab(tab)));

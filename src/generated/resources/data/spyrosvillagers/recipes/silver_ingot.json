@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "spyrosvillagers:silver_block"
+    }
+  ],
+  "result": {
+    "item": "spyrosvillagers:silver_ingot",
+    "count": 9
+  }
+}
