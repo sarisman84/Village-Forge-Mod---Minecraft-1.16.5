@@ -1,6 +1,5 @@
-package com.example.examplemod.blocks;
+package com.spyro.spyrosvillagers.blocks;
 
-import com.example.examplemod.VillagerMod;
 import net.minecraftforge.registries.ObjectHolder;
 
 public class ModBlocks {

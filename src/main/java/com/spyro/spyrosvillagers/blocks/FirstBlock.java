@@ -12,7 +12,7 @@ import java.util.function.ToIntFunction;
 public class FirstBlock extends Block {
 
     public FirstBlock() {
-        super(Properties.of(Material.LAVA).sound(SoundType.METAL).harvestLevel(2).lightLevel((blockState) -> 14));
+        super(Properties.of(Material.METAL).sound(SoundType.METAL).harvestLevel(2).lightLevel((blockState) -> 14));
         setRegistryName("firstblock");
 
     }
