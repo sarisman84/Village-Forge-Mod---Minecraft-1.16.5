@@ -1,5 +1,8 @@
 {
   "item.spyrosvillagers.silver_ingot": "Silver Ingot",
   "block.spyrosvillagers.silver_ore": "Silver Ore",
-  "block.spyrosvillagers.silver_block": "Silver Block"
+  "block.spyrosvillagers.silver_block": "Silver Block",
+  "block.spyrosvillagers.metal_press": "Metal Press",
+  "entity.spyrosvillagers.customvillager": "Scuffed Steve",
+  "item.spyrosvillagers.spawn_egg": "Spawn Egg"
 }

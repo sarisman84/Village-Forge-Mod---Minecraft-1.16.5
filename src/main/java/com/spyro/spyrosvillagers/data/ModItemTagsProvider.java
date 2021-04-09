@@ -24,5 +24,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
         tag(ModTags.Items.INGOTS_SILVER).add(ModItems.SILVER_INGOT.get());
         tag(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_SILVER);
+        tag(ModTags.Items.CUSTOMVILLAGER_SPAWNEGG).add(ModItems.CUSTOMVILLAGER_SPAWNEGG.get());
+        tag(Tags.Items.EGGS).addTag(ModTags.Items.CUSTOMVILLAGER_SPAWNEGG);
     }
 }

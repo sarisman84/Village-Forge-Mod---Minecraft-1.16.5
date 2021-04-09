@@ -2,6 +2,7 @@ package com.spyro.spyrosvillagers.setup;
 
 import com.spyro.spyrosvillagers.VillagerMod;
 import net.minecraft.block.Block;
+import net.minecraft.entity.EntityType;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
@@ -25,6 +26,8 @@ public class Registration {
     public static final DeferredRegister<Item> ITEMS = create(ForgeRegistries.ITEMS);
     public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = create(ForgeRegistries.TILE_ENTITIES);
     public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = create(ForgeRegistries.RECIPE_SERIALIZERS);
+    public static final DeferredRegister<EntityType<?>> ENTITIES = create(ForgeRegistries.ENTITIES);
+
 
     //Deffered Registration taken from eerussianguy as well as altered based on SilentChaos512's videos. errussiangu -> Github: https://github.com/eerussianguy/Rainbow-Oaks/blob/main/src/main/java/com/eerussianguy/rainbowoaks/RORegistry.java
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> supplier, ItemGroup tab, boolean registerItem) {
@@ -40,8 +43,12 @@ public class Registration {
         RegistryObject<T> item = (RegistryObject<T>) ITEMS.register(name, () -> new Item(properties.tab(tab)));
         return item;
     }
+    public static <T extends Item>RegistryObject<T> registerItem(String name, Supplier<T> item){
+        return ITEMS.register(name, item);
+    }
 
     //Taken from SilentChaos512: https://www.youtube.com/watch?v=3Uqnb8TqjTY
+    //Used to initialize the registrators (is called in the Villager Core class).
     public static void register(){
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(modEventBus);
@@ -49,6 +56,7 @@ public class Registration {
         CONTAINERS.register(modEventBus);
         RECIPE_SERIALIZERS.register(modEventBus);
         TILE_ENTITIES.register(modEventBus);
+        ENTITIES.register(modEventBus);
 
         //Class load registries
         ModItems.register();
@@ -56,7 +64,11 @@ public class Registration {
         ModRecipes.register();
         ModTileEntityTypes.register();
         ModContainerTypes.register();
+        ModEntities.register();
+
     }
+
+
 
     private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
         return DeferredRegister.create(registry, VillagerMod.MOD_ID);

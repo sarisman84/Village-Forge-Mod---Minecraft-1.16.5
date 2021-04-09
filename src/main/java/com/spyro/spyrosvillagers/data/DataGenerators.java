@@ -22,8 +22,10 @@ public class DataGenerators {
         ModBlockTagsProvider blockTagsProvider = new ModBlockTagsProvider(gen, helper);
         gen.addProvider(blockTagsProvider);
         gen.addProvider(new ModItemTagsProvider(gen, blockTagsProvider, helper));
+        gen.addProvider(new ModEntityTagsProvider(gen, helper));
 
         gen.addProvider(new ModLootTableProvider(gen));
         gen.addProvider(new MobRecipeProvider(gen));
+
     }
 }

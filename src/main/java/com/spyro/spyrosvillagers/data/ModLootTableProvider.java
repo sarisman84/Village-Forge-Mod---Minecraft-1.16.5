@@ -3,11 +3,14 @@ package com.spyro.spyrosvillagers.data;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import com.spyro.spyrosvillagers.setup.ModBlocks;
+import com.spyro.spyrosvillagers.setup.ModEntities;
 import com.spyro.spyrosvillagers.setup.Registration;
 import net.minecraft.block.Block;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.LootTableProvider;
 import net.minecraft.data.loot.BlockLootTables;
+import net.minecraft.data.loot.EntityLootTables;
+import net.minecraft.entity.EntityType;
 import net.minecraft.loot.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.RegistryObject;
@@ -41,6 +44,8 @@ public class ModLootTableProvider extends LootTableProvider {
         protected void addTables() {
             dropSelf(ModBlocks.SILVER_BLOCK.get());
             dropSelf(ModBlocks.SILVER_ORE.get());
+            dropSelf(ModBlocks.METAL_PRESS.get());
+
         }
 
         @Override
@@ -48,6 +53,20 @@ public class ModLootTableProvider extends LootTableProvider {
             return Registration.BLOCKS.getEntries().stream()
                     .map(RegistryObject::get)
                     .collect(Collectors.toList());
+        }
+    }
+
+    public static class ModMobLootTables extends EntityLootTables{
+        @Override
+        protected void addTables() {
+            add(ModEntities.CUSTOMVILLAGER.get(), LootTable.lootTable());
+        }
+
+        @Override
+        protected Iterable<EntityType<?>> getKnownEntities() {
+            return Registration.ENTITIES.getEntries().stream()
+                    .map(RegistryObject::get).
+                    collect(Collectors.toList());
         }
     }
 }

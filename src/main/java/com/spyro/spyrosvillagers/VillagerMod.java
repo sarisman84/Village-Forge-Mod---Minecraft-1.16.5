@@ -14,7 +14,6 @@ public class VillagerMod {
     private static final Logger LOGGER = LogManager.getLogger();
 
 
-
     public VillagerMod() {
 
         Registration.register();
