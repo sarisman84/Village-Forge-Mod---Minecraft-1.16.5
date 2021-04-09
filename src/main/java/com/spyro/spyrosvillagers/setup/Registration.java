@@ -1,25 +1,32 @@
 package com.spyro.spyrosvillagers.setup;
 
+import com.spyro.spyrosvillagers.VillagerMod;
 import net.minecraft.block.Block;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.IForgeRegistry;
+import net.minecraftforge.registries.IForgeRegistryEntry;
 
 import java.util.function.Supplier;
 
-import static com.spyro.spyrosvillagers.VillagerMod.MOD_ID;
-
 public class Registration {
 
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, MOD_ID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, MOD_ID);
+    public static final DeferredRegister<Block> BLOCKS = create(ForgeRegistries.BLOCKS);
+    public static final DeferredRegister<ContainerType<?>> CONTAINERS = create(ForgeRegistries.CONTAINERS);
+    public static final DeferredRegister<Item> ITEMS = create(ForgeRegistries.ITEMS);
+    public static final DeferredRegister<TileEntityType<?>> TILE_ENTITIES = create(ForgeRegistries.TILE_ENTITIES);
+    public static final DeferredRegister<IRecipeSerializer<?>> RECIPE_SERIALIZERS = create(ForgeRegistries.RECIPE_SERIALIZERS);
 
-    //Deffered Registration taken from eerussianguy as well as altered based on SilentChaos512. errussiangu -> Github: https://github.com/eerussianguy/Rainbow-Oaks/blob/main/src/main/java/com/eerussianguy/rainbowoaks/RORegistry.java
+    //Deffered Registration taken from eerussianguy as well as altered based on SilentChaos512's videos. errussiangu -> Github: https://github.com/eerussianguy/Rainbow-Oaks/blob/main/src/main/java/com/eerussianguy/rainbowoaks/RORegistry.java
     public static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> supplier, ItemGroup tab, boolean registerItem) {
         RegistryObject<T> block = BLOCKS.register(name, supplier);
         if(registerItem)
@@ -39,9 +46,19 @@ public class Registration {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
+        CONTAINERS.register(modEventBus);
+        RECIPE_SERIALIZERS.register(modEventBus);
+        TILE_ENTITIES.register(modEventBus);
 
-
+        //Class load registries
         ModItems.register();
         ModBlocks.register();
+        ModRecipes.register();
+        ModTileEntityTypes.register();
+        ModContainerTypes.register();
+    }
+
+    private static <T extends IForgeRegistryEntry<T>> DeferredRegister<T> create(IForgeRegistry<T> registry) {
+        return DeferredRegister.create(registry, VillagerMod.MOD_ID);
     }
 }

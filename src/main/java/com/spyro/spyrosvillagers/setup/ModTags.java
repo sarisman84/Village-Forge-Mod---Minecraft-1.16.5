@@ -15,11 +15,11 @@ public class ModTags {
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_SIVLER = forge("storage_blocks/silver");
 
                 private static ITag.INamedTag<Block> forge(String path){
-                return BlockTags.createOptional(new ResourceLocation(VillagerMod.MOD_ID, path));
+                return BlockTags.bind(new ResourceLocation(VillagerMod.MOD_ID, path).toString());
                 }
 
                 private static ITag.INamedTag<Block> mod(String path){
-                return BlockTags.createOptional(new ResourceLocation(VillagerMod.MOD_ID, path));
+                return BlockTags.bind(new ResourceLocation(VillagerMod.MOD_ID, path).toString());
                 }
     }
 
@@ -28,11 +28,11 @@ public class ModTags {
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_SIVLER = forge("storage_blocks/silver");
         public static final ITag.INamedTag<Item> INGOTS_SILVER = forge("ingots/silver");
         private static ITag.INamedTag<Item> forge(String path){
-            return ItemTags.createOptional(new ResourceLocation(VillagerMod.MOD_ID, path));
+            return ItemTags.bind(new ResourceLocation(VillagerMod.MOD_ID, path).toString());
         }
 
         private static ITag.INamedTag<Item> mod(String path){
-            return ItemTags.createOptional(new ResourceLocation(VillagerMod.MOD_ID, path));
+            return ItemTags.bind(new ResourceLocation(VillagerMod.MOD_ID, path).toString());
         }
     }
 }
